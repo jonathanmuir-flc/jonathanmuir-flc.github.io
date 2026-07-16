@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Rendered directly from the token names so this page can't drift from
+// tokens.css — the styleguide *is* the design system, documented.
+const colors = [
+  "--color-bg",
+  "--color-surface",
+  "--color-surface-sunken",
+  "--color-ink",
+  "--color-ink-secondary",
+  "--color-ink-muted",
+  "--color-border",
+  "--color-accent",
+];
+
+const typeScale = [
+  ["--text-3xl", "Display / page hero"],
+  ["--text-2xl", "Page title"],
+  ["--text-xl", "Section heading"],
+  ["--text-lg", "Subsection heading"],
+  ["--text-md", "Lede / card title"],
+  ["--text-base", "Body"],
+  ["--text-sm", "Secondary body"],
+  ["--text-xs", "Caption / eyebrow"],
+] as const;
+
+const spacing = ["1", "2", "3", "4", "6", "8", "12", "16", "24"];
+---
+
+<BaseLayout
+  title="Styleguide"
+  description="The design tokens behind this site — color, type, and spacing, documented as a system."
+>
+  <section class="container page-head">
+    <h1>Styleguide</h1>
+    <p class="lede">
+      The tokens this site is built from. Every component consumes these
+      variables — a visual-direction change swaps one file, not every page.
+      Current palette is a neutral placeholder pending the direction decision.
+    </p>
+  </section>
+
+  <section class="container section">
+    <h2>Color</h2>
+    <ul class="swatches">
+      {
+        colors.map((token) => (
+          <li>
+            <span class="swatch" style={`background: var(${token})`} />
+            <code>{token}</code>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container section">
+    <h2>Type scale</h2>
+    <ul class="type-scale">
+      {
+        typeScale.map(([token, usage]) => (
+          <li>
+            <span style={`font-size: var(${token})`}>The quick brown fox</span>
+            <code>
+              {token} · {usage}
+            </code>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container section">
+    <h2>Spacing</h2>
+    <ul class="spacing">
+      {
+        spacing.map((step) => (
+          <li>
+            <span class="bar" style={`width: var(--space-${step})`} />
+            <code>--space-{step}</code>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--space-16) var(--space-8);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-secondary);
+  }
+
+  .section {
+    padding-block: var(--space-8);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  h2 {
+    font-size: var(--text-lg);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .swatches {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  }
+
+  .swatches li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .swatch {
+    display: block;
+    height: 3.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .type-scale li {
+    display: grid;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-4);
+  }
+
+  .type-scale span {
+    line-height: var(--leading-tight);
+  }
+
+  .spacing li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .bar {
+    display: block;
+    height: 1rem;
+    background: var(--color-accent);
+    border-radius: 2px;
+  }
+</style>

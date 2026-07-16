@@ -1,16 +1,143 @@
 ---
-// Placeholder entry page — replaced by the real Home composition in the
-// layout/IA commits that follow.
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseStudyCard from "../components/CaseStudyCard.astro";
+import { withBase } from "../lib/paths";
+
+const featured = (await getCollection("caseStudies", ({ data }) => data.featured && !data.draft))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jonathan Muir — Portfolio (scaffold)</title>
-  </head>
-  <body>
-    <h1>FLC Portfolio scaffold</h1>
-    <p>Astro project baseline. Layout and IA land in subsequent commits.</p>
-  </body>
-</html>
+<BaseLayout title="Home">
+  <section class="hero container">
+    <p class="eyebrow">Creative technologist · Product designer</p>
+    <h1>
+      Systems thinking at the intersection of <em>design</em> and
+      <em>emerging technology</em>.
+    </h1>
+    <!-- PLACEHOLDER positioning copy — final voice written in Phase 2 -->
+    <p class="hero-lede">
+      [Placeholder] I design brand and product systems — and build them in
+      code. Fifteen years across enterprise (Cisco, Dell Technologies, Flex)
+      and startups, currently shaping AI-era GRC at LogicGate.
+    </p>
+    <div class="hero-actions">
+      <a class="button" href={withBase("/work")}>See the work</a>
+      <a class="button button-ghost" href={withBase("/contact")}>Get in touch</a>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <a href={withBase("/work")}>All case studies →</a>
+    </div>
+    <div class="card-grid">
+      {featured.map((entry) => <CaseStudyCard entry={entry} />)}
+    </div>
+  </section>
+
+  <section class="container section about-teaser">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>Design, marketing, product, engineering — the crossover is the point.</h2>
+      <!-- PLACEHOLDER about teaser copy -->
+      <p>
+        [Placeholder] From global matrixed organizations to fast-paced
+        startups, the constant is building systems that let creative work
+        scale. More on the arc — and the philosophy behind it — on the about
+        page.
+      </p>
+      <a href={withBase("/about")}>Read the full story →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-24) var(--space-16);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  h1 {
+    font-size: var(--text-3xl);
+    max-width: 22ch;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+
+  .hero-lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-secondary);
+    max-width: 55ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-block;
+    background: var(--color-ink);
+    color: var(--color-bg);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: background var(--duration-quick) var(--ease-out);
+  }
+
+  .button:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  .button-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-border);
+  }
+
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 {
+    font-size: var(--text-xl);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .about-teaser {
+    border-top: 1px solid var(--color-border);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .about-teaser h2 {
+    font-size: var(--text-xl);
+    max-width: 28ch;
+    margin-block: var(--space-3) var(--space-4);
+  }
+</style>

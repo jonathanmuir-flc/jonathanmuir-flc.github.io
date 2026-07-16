@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/paths";
+
+const arc = [
+  { org: "Cisco", note: "[Placeholder] Enterprise brand activation & product design" },
+  { org: "Dell Technologies", note: "[Placeholder] Print production at global scale" },
+  { org: "Flex", note: "[Placeholder] Web redesign in a matrixed org" },
+  { org: "LogicGate", note: "[Placeholder] Brand & product systems for AI-era GRC" },
+  { org: "Startup contract", note: "[Placeholder] Current print/collateral system work" },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Career arc and philosophy — systems thinking across design, marketing, product, and engineering."
+>
+  <section class="container page-head">
+    <h1>About</h1>
+    <!-- PLACEHOLDER — full narrative written in Phase 2 -->
+    <p class="lede">
+      [Placeholder] The short version: fifteen years moving between design,
+      marketing, product, and engineering — and a conviction that the most
+      interesting problems live where those disciplines overlap.
+    </p>
+  </section>
+
+  <section class="container section">
+    <h2>The arc</h2>
+    <ol class="arc">
+      {
+        arc.map((stop) => (
+          <li>
+            <h3>{stop.org}</h3>
+            <p>{stop.note}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="container section">
+    <h2>Philosophy</h2>
+    <p>
+      [Placeholder] Systems over one-offs. Frameworks over heroics. A working
+      prototype over a promise. This section carries the POV on design ×
+      emerging tech — written in Phase 2.
+    </p>
+    <p>
+      <a href={withBase("/contact")}>Get in touch →</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--space-16) var(--space-8);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-secondary);
+  }
+
+  .section {
+    padding-block: var(--space-8);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  h2 {
+    font-size: var(--text-lg);
+  }
+
+  .arc {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .arc li {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-6);
+    padding-block: var(--space-2);
+  }
+
+  .arc h3 {
+    font-size: var(--text-base);
+  }
+
+  .arc p {
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+</style>
