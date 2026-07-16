@@ -14,7 +14,7 @@ Jonathan wrote himself an aspirational role spec: **Lead Interactive UX Engineer
 2. **Interactive Digital Experience Engineering** — clean responsive front-end, coded (not just designed) components, engineered for site speed, SEO, and WCAG accessibility. This isn't just a "polish pass" at the end — it's core evidence for this pillar and should be treated with real weight in Phase 4.
 3. **Dynamic Motion & Interaction Design** — the Rive piece isn't just a nice-to-have flex, it's direct proof of this exact line item ("proven ability to build state machines and interactive animations in Rive").
 4. **Systems Design & Token Management** — the documented design system (tokens, components) is itself evidence, not just a means to build the site faster.
-5. **Creative Automation & AI Platform Engineering** — the fact that this site is being built with Claude Code / an AI-assisted workflow, with a real branching/staging pipeline, IS relevant evidence here. Worth considering a short "how this site was built" note/case study documenting the AI-assisted build process itself.
+5. **Creative Automation & AI Platform Engineering** — the fact that this site is being built with Claude Code / an AI-assisted workflow, with a real branching/staging pipeline, IS relevant evidence here. Worth considering a short "how this site was built" note/case study documenting the AI-assisted build process itself. Also: his resume already lists Claude Code, MCP, and AirOps under current skills, and the LogicGate role description mentions "evolving the design system with agentic workflows" — meaning this pillar has real current evidence, not just this site as an example. Surface that explicitly rather than letting the site-build story carry the whole pillar alone.
 6. **Cross-functional "Translator" Leadership** — case study writing should surface where Jonathan bridged product, marketing, and engineering — not just describe visual output.
 
 Audience: **external** — this is a template for pursuing equivalent roles wherever they show up, not an internal LogicGate case. LogicGate context should be spelled out (external readers won't have it), and the architecture should stay extensible so new personal/freelance projects can be added over time as case studies, not treated as a fixed, one-time set.
@@ -56,11 +56,21 @@ This section should be revisited once Jonathan and Claude Code confirm the exact
   - Visuals / prototypes
   - Outcome / impact (metrics if available)
   - Reflection / what he'd do differently
-- **About** — career arc (Cisco → Dell Technologies → Flex → current startup), the design+marketing+product+engineering crossover story, philosophy on systems thinking and emerging tech.
+- **About** — career arc (Cisco → Dell Technologies → Flex → Cisco again → LogicGate — see RESUME-SOURCE.md for the corrected chronology and role specifics; note the two non-contiguous Cisco stints), the design+marketing+product+engineering crossover story, philosophy on systems thinking and emerging tech.
 - **Lab / Experiments** *(recommended, not yet confirmed with Jonathan)* — a space for interactive motion work (Rive pieces, Cavalry exports). This can double as a craft flex: an actual interactive Rive component embedded in the site, not just a screenshot of one.
 - **Contact / Resume** — resume download, contact method, LinkedIn/GitHub links.
 
 ## Design principles
+
+### Visual style direction (confirmed)
+
+Reference brands: Notion, Vercel, LangChain, Claude/Anthropic — also studying Cognition AI, Nous Research, Cursor as design-language peers. This is the AI-native / dev-tools "unicorn" aesthetic, deliberately in contrast to traditional enterprise polish (Apple, Google, Cisco read as too corporate/generic for this positioning).
+
+- **Mode**: light mode, dominant — monochromatic palette of grays and whites doing most of the work, not saturated brand color.
+- **Typography**: technical/engineering feel for headers and labels — should evoke a code editor or terminal. Likely a monospace or geometric-mono-adjacent typeface (e.g. JetBrains Mono, IBM Plex Mono, Space Mono, Berkeley Mono) rather than a humanist sans — confirm exact reference with Jonathan before locking a specific font, since "Open Sans" (a humanist sans) and "looks like code/terminal" are in some tension typographically.
+- **Overall**: minimal, restrained, generous whitespace.
+- **Narrative fit**: the design language itself needs to argue the positioning — systems thinking, cutting-edge technical fluency — not just the copy. This is a direct extension of the "demonstrate systems thinking" principle below, applied to visual choices specifically.
+
 
 - The site should *demonstrate* systems thinking, not just claim it: a small documented design system (color, type, spacing, component tokens) used consistently, not one-off styling per page.
 - One tasteful interactive/motion moment (e.g. a Rive piece) beats motion sprinkled everywhere — restraint signals craft.
@@ -78,7 +88,7 @@ Jonathan has **no case studies fully migrated yet** from his existing Webflow si
 ## Open questions / TBD (flag to Jonathan, don't assume)
 
 - **NDA / confidentiality on enterprise work**: Cisco, Dell Technologies, and Flex projects likely have confidentiality constraints. Decide per-project how to represent them (redacted visuals, abstracted process description, explicit "details limited by NDA" framing) vs. the startup work, which may be freer to show in full.
-- Visual style direction: color palette, typographic voice, light/dark, overall tone (has not been specified yet — scaffold phase should propose 2–3 directions rather than guess one).
+- ~~Visual style direction~~ — confirmed, see Design principles section below.
 - Which projects/case studies are the featured 2–3 on Home.
 - Domain name / whether a custom domain will be added on top of GitHub Pages.
 - Whether a working contact form is wanted or a simple mailto/LinkedIn link is enough.
