@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Lab"
+  description="Interactive and motion experiments — Rive state machines, Cavalry exports, and works in progress."
+>
+  <section class="container page-head">
+    <h1>Lab</h1>
+    <p class="lede">
+      [Placeholder] Interactive and motion experiments. Working pieces, not
+      screenshots — each experiment ships as an isolated island so the rest of
+      the site stays fast.
+    </p>
+    <p class="flag">
+      Note: this section is proposed in the brief but not yet confirmed —
+      easy to remove if it doesn't earn its place.
+    </p>
+  </section>
+
+  <section class="container experiments">
+    <div class="experiment">
+      <div class="experiment-canvas" aria-hidden="true">
+        <span>Rive state machine mounts here (Phase 3)</span>
+      </div>
+      <h2>[Placeholder] Interactive Rive piece</h2>
+      <p>
+        Direct evidence for the motion/interaction pillar: a working state
+        machine, embedded as an Astro island with its own runtime.
+      </p>
+    </div>
+    <div class="experiment">
+      <div class="experiment-canvas" aria-hidden="true">
+        <span>Cavalry export (Lottie/video) mounts here (Phase 3)</span>
+      </div>
+      <h2>[Placeholder] Cavalry export</h2>
+      <p>Procedural motion piece exported from Cavalry.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--space-16) var(--space-8);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-secondary);
+  }
+
+  .flag {
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    border-left: 3px solid var(--color-border);
+    padding-left: var(--space-4);
+  }
+
+  .experiments {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .experiment {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .experiment-canvas {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-sunken);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-muted);
+    text-align: center;
+    padding: var(--space-4);
+  }
+
+  h2 {
+    font-size: var(--text-md);
+  }
+
+  .experiment p {
+    font-size: var(--text-sm);
+    color: var(--color-ink-secondary);
+  }
+</style>

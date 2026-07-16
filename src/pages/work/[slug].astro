@@ -1,0 +1,187 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
+import { TAG_LABELS } from "../../lib/tags";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("caseStudies", ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, client, summary, role, timeline, team, tools, tags, outcome, nda } =
+  entry.data;
+const { Content } = await render(entry);
+
+const meta: Array<[string, string]> = [
+  ["Role", role],
+  ["Timeline", timeline],
+  ...(team ? ([["Team", team]] as Array<[string, string]>) : []),
+  ["Tools", tools.join(", ")],
+];
+---
+
+<BaseLayout title={title} description={summary}>
+  <article>
+    <header class="container study-head">
+      <p class="eyebrow">
+        <a href={withBase("/work")}>Work</a> / {client}
+      </p>
+      <h1>{title}</h1>
+      <p class="study-summary">{summary}</p>
+      <ul class="study-tags">
+        {tags.map((tag) => <li>{TAG_LABELS[tag]}</li>)}
+      </ul>
+      {
+        nda && (
+          <p class="nda-note">
+            Some details of this project are limited by confidentiality
+            agreements; process and outcomes are described at the level that
+            can be shared.
+          </p>
+        )
+      }
+      <dl class="study-meta">
+        {
+          meta.map(([label, value]) => (
+            <div>
+              <dt class="eyebrow">{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </header>
+
+    <div class="hero-visual container" aria-hidden="true">
+      <span>Hero visual — Phase 3</span>
+    </div>
+
+    <div class="container study-body">
+      <Content />
+      <aside class="outcome-callout">
+        <p class="eyebrow">Outcome</p>
+        <p>{outcome}</p>
+      </aside>
+      <nav class="study-footer" aria-label="Case study navigation">
+        <a href={withBase("/work")}>← All case studies</a>
+        <a href={withBase("/contact")}>Discuss a role →</a>
+      </nav>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .study-head {
+    padding-block: var(--space-16) var(--space-8);
+    display: grid;
+    gap: var(--space-4);
+    max-width: 52rem;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .study-summary {
+    font-size: var(--text-md);
+    color: var(--color-ink-secondary);
+  }
+
+  .study-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+  }
+
+  .study-tags li {
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .nda-note {
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    border-left: 3px solid var(--color-border);
+    padding-left: var(--space-4);
+  }
+
+  .study-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-4);
+    border-block: 1px solid var(--color-border);
+    padding-block: var(--space-6);
+  }
+
+  .study-meta dd {
+    margin: var(--space-1) 0 0;
+    font-size: var(--text-sm);
+  }
+
+  .hero-visual {
+    margin-block: var(--space-8);
+  }
+
+  .hero-visual span {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 21 / 9;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-sunken);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-muted);
+  }
+
+  .study-body {
+    max-width: 44rem;
+    padding-bottom: var(--space-16);
+  }
+
+  .study-body :global(h2) {
+    font-size: var(--text-lg);
+    margin-block: var(--space-12) var(--space-4);
+  }
+
+  .study-body :global(p) {
+    margin-block: var(--space-4);
+    color: var(--color-ink-secondary);
+  }
+
+  .study-body :global(blockquote) {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-4);
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  .outcome-callout {
+    margin-block: var(--space-12);
+    padding: var(--space-6);
+    background: var(--color-surface-sunken);
+    border-radius: var(--radius-lg);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .study-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-8);
+  }
+</style>
