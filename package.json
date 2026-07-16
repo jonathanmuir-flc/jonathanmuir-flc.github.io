@@ -11,6 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/spline-sans": "^5.2.8",
+    "@fontsource-variable/spline-sans-mono": "^5.2.8",
     "astro": "^5.0.0"
   },
   "devDependencies": {
