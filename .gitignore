@@ -16,3 +16,8 @@ node_modules/
 
 # logs
 npm-debug.log*
+
+# private planning docs — not part of the public site, kept local only
+CLAUDE.md
+SITE-AUDIT.md
+RESUME-SOURCE.md
