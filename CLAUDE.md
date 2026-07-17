@@ -6,6 +6,12 @@ Read this file before doing any work in this repo. It's the product/design brief
 
 Jonathan Muir — creative technologist / product designer. Enterprise design background (Cisco, Dell Technologies, Flex), now at LogicGate (AI GRC platform, Series C), with experience spanning marketing, product, and engineering. Currently also contracting for an early-stage startup on marketing collateral — a live source for fresh print/collateral work. Approaches problems through systems design thinking and frameworks. Interested in where technology and creative craft intersect (motion/interactive tools like Rive and Cavalry are part of his toolkit).
 
+## Positioning filter — apply to all copy, titles, and case study framing
+
+Primary audience for hiring purposes: **Product & Engineering hiring managers**, not just marketing/brand ones — specifically for Product Designer or Design Engineer roles sitting inside P&E orgs. Every case study title, summary, and process description should read in a way that lets a P&E hiring manager see Jonathan working seamlessly inside their org, not just adjacent to it in a marketing silo.
+
+Practical implication: favor systems/architecture/technical language over brand/marketing-department language where both are accurate. E.g. "agent architecture," "internal tooling system," "API integration," "component system," "measurable product/ops outcome" read P&E-native; "creative production," "brand ops," "campaign templates" read marketing-department-coded and risk being screened out by a P&E reader even when the underlying work is the same. This doesn't mean stripping brand/creative-direction language entirely — it's still core to pillar 1 — just making sure the P&E-legible framing is never buried under it.
+
 ## Target role — the north star
 
 Jonathan wrote himself an aspirational role spec: **Lead Interactive UX Engineer, Brand and Content** — a hybrid of brand/creative direction, front-end engineering, motion/interaction design, design-systems ownership, and AI-driven creative automation. This is self-authored (not a specific job posting he's applying to) and should function as the skills rubric the portfolio proves out. Six pillars from that spec, and how the site should show evidence of each:
@@ -42,7 +48,7 @@ This section should be revisited once Jonathan and Claude Code confirm the exact
 
 - **Astro** (static site generator). Reasons: minimal shipped JS, component-based, purpose-built for content-heavy sites like this, and its islands architecture means an interactive Rive canvas or a Cavalry export (Lottie/video) can be dropped in as an isolated component without bloating the rest of the site with JS. Neither Rive nor Cavalry care what framework serves the page — both just need a mount point and their own runtime/asset, so Astro doesn't limit this at all.
 - **Astro Content Collections** for case studies — each case study is a structured Markdown/MDX entry validated against a schema (title, role, timeline, tags, summary, outcome, etc.), not a one-off hand-built page. This enforces the template consistently and is itself a small demonstration of systems thinking in how the site is built.
-- **Hosting: GitHub Pages**, deployed via a GitHub Actions workflow (`astro build` → `gh-pages` branch or Pages' native Actions deploy). Repo is already connected: `jonathanmuir-flc/FLC-Portfolio`. Free, no new accounts, deploys automatically on push to `main`.
+- **Hosting: GitHub Pages**, deployed via a GitHub Actions workflow (`astro build` → `gh-pages` branch or Pages' native Actions deploy). Repo is already connected: `jonathanmuir-flc/jonathanmuir-flc.github.io` (renamed from `FLC-Portfolio` to a user site so it serves at the domain root). Free, no new accounts, deploys automatically on push to `main`.
 
 ## Information architecture
 
@@ -90,11 +96,11 @@ Jonathan has **no case studies fully migrated yet** from his existing Webflow si
 - **NDA / confidentiality on enterprise work**: Cisco, Dell Technologies, and Flex projects likely have confidentiality constraints. Decide per-project how to represent them (redacted visuals, abstracted process description, explicit "details limited by NDA" framing) vs. the startup work, which may be freer to show in full.
 - ~~Visual style direction~~ — confirmed, see Design principles section below.
 - Which projects/case studies are the featured 2–3 on Home.
-- Domain name / whether a custom domain will be added on top of GitHub Pages.
+- ~~Domain name~~ — resolved: no custom domain purchase; repo renamed to `jonathanmuir-flc.github.io` (a GitHub Pages user site) so the free URL is the clean root `jonathanmuir-flc.github.io`, with staging at `/staging`.
 - Whether a working contact form is wanted or a simple mailto/LinkedIn link is enough.
 
 ## Notes for whoever (Claude Code / Fable) is coding this
 
-- This repo is already git-initialized and connected to GitHub (`jonathanmuir-flc/FLC-Portfolio`, branch `main`). Don't re-init.
+- This repo is already git-initialized and connected to GitHub (`jonathanmuir-flc/jonathanmuir-flc.github.io`, branch `main`). Don't re-init.
 - Favor small, reviewable commits per phase above so Jonathan can follow along and learn the process (this build doubles as his own learning exercise in working with Claude Code).
 - Don't build out full case study content yet — Phase 1 is structure/layout with placeholder content only, per the sequencing above.
