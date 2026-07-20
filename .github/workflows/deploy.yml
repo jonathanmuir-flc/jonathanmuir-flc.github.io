@@ -1,0 +1,78 @@
+# Production + staging deploys to a single GitHub Pages site.
+#
+#   main    -> gh-pages root      -> https://jonathanmuir-flc.github.io/
+#   develop -> gh-pages /staging  -> https://jonathanmuir-flc.github.io/staging/
+#
+# One-time repo setup required: Settings -> Pages -> Source: "Deploy from a
+# branch" -> branch `gh-pages`, folder `/ (root)`. See docs/DEPLOYMENT.md.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Both jobs push to the same gh-pages branch — serialize them.
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build (production)
+        run: npm run build
+        env:
+          BASE_PATH: /
+
+      - name: Deploy to gh-pages root
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+          clean: true
+          # Don't wipe the staging preview when production deploys.
+          clean-exclude: |
+            staging
+
+  staging:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build (staging)
+        run: npm run build
+        env:
+          BASE_PATH: /staging
+          PUBLIC_DEPLOY_ENV: staging
+
+      - name: Deploy to gh-pages /staging
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+          target-folder: staging
+          clean: true

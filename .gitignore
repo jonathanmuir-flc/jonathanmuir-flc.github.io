@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.*
+
+# logs
+npm-debug.log*
+
+# private planning docs — not part of the public site, kept local only
+CLAUDE.md
+SITE-AUDIT.md
+RESUME-SOURCE.md
+
+# local Claude Code settings
+.claude/
+
+# defensive: keep this tracked even if a broad ignore rule gets added later
+# required by GitHub Pages, see docs/DEPLOYMENT.md
+!public/.nojekyll
