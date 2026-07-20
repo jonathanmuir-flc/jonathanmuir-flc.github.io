@@ -24,3 +24,7 @@ RESUME-SOURCE.md
 
 # local Claude Code settings
 .claude/
+
+# defensive: keep this tracked even if a broad ignore rule gets added later
+# required by GitHub Pages, see docs/DEPLOYMENT.md
+!public/.nojekyll
